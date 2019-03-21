@@ -1,5 +1,5 @@
 import random
-import elgamal-ecceg.general as g
+from base.general import is_prime
 
 class ElGamal(object):
 
@@ -25,7 +25,7 @@ class ElGamal(object):
       file.write(data)
 
   def key_gen(self, p):
-    if (g.is_prime(p) == False):
+    if (is_prime(p) == False):
       return "P is not prime" 
     g = random.randrange(p)
     x = random.randrange(1,p - 2)
