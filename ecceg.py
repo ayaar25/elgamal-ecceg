@@ -3,7 +3,7 @@ import pickle
 import array
 import re
 from base.general import is_prime
-from base.point import Point
+from point import Point
 
 class EllipticCurveCryptoElGamal(object):
 

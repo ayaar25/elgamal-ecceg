@@ -12,5 +12,14 @@ def gcd(a, b):
     else: 
         return gcd(b, a % b)
 
-if __name__ == "__main__":
-    print(isPrime(9))
+def inverse(a,b):
+    a = a % b; 
+    for x in range(1, b) : 
+        if ((a * x) % b == 1) : 
+            return x 
+    return 1
+    
+
+# if __name__ == "__main__":
+#     print(gcd(9,7))
+#     print(inverse(17,7))
