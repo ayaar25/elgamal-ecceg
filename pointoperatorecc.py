@@ -83,10 +83,10 @@ class PointOperatorECC(object):
     base._set_y(p._get_y())
 
     bin_k = bin(k).lstrip('0b')
-    for i in range(len(bin_k)-1):
-      if i == len(bin_k)-2:
-        if bin_k[i+1] == '0':
-          result = self.double_point(base)
+    for i in range(len(bin_k)):
+      if i == len(bin_k)-1:
+        if bin_k[i] == '0':
+          result = base
         else:
           result = self.add(base, p)
       base = self.double_point(base)
@@ -94,9 +94,9 @@ class PointOperatorECC(object):
     return result
 
 if __name__ == '__main__':
-  # point = Point()
-  # point._set_x(2)
-  # point._set_y(4)
+  point = Point()
+  point._set_x(2)
+  point._set_y(4)
   p1 = Point()
   p1._set_x(2)
   p1._set_y(4)
@@ -104,9 +104,11 @@ if __name__ == '__main__':
   p2._set_x(5)
   p2._set_y(9)
   op = PointOperatorECC(1,6,11)
-  result = op.multiply(2, p1)
-  resultdouble = op.double_point(p2)
+  result = op.multiply(2, point)
+  resultdouble = op.double_point(p1)
+  resultadd = op.add(resultdouble, p1)
   print(result._get_x(), result._get_y())  
   print(resultdouble._get_x(), resultdouble._get_y())  
+  print(resultadd._get_x(), resultadd._get_y())  
 
   
