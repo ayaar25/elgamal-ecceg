@@ -1,6 +1,7 @@
 import random
 import pickle
 import array
+import math
 import re
 from base.general import is_prime
 from point import Point
@@ -77,6 +78,7 @@ class EllipticCurveCryptoElGamal(object):
   def encoding(self, list_message):
     list_message_int = list(map(int, list_message))
     # print("lent massage: ", len(list_message_int))
+    print(list_message)
     result = []
     for i in range(len(list_message_int)):
       for j in range(self._get_k()-1):
@@ -90,7 +92,13 @@ class EllipticCurveCryptoElGamal(object):
     return result
 
   def decoding(self, list_message):
-    pass
+    # print("lent massage: ", len(list_message_int))
+    result = []
+    for i in range(len(list_message)):
+      x = list_message[i]._get_x()
+      message = math.floor((x-1)/self._get_k())
+      result.append(message)
+    return result
   
   def encrypt(self, filename):
     plaintext = self.read_file(filename)
@@ -99,8 +107,12 @@ class EllipticCurveCryptoElGamal(object):
   
     return self.encoding(list_plain_int)
 
-  def decrypt(self, filename, key_public, key_private):
-    pass
+  def decrypt(self, list_cipher_int):
+    # ciphertext = self.read_file(filename)
+    # list_ciphertext = list(ciphertext)
+    # list_cipher_int = list(map(int, ciphertext))
+
+    return self.decoding(list_cipher_int)
 
 if __name__ == '__main__':
   ecceg = EllipticCurveCryptoElGamal(-1,188,751,5)
@@ -108,6 +120,8 @@ if __name__ == '__main__':
   result = ecceg.encrypt("plain.txt")
   for i in range(len(result)):
     print(result[i]._get_x(),result[i]._get_y())
+  decode = ecceg.decoding(result)
+  print(decode)
   # p = Point()
   # p._set_x(2)
   # p._set_y(4)
