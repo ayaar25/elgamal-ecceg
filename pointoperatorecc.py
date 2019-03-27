@@ -91,20 +91,31 @@ class PointOperatorECC(object):
 
 if __name__ == '__main__':
   point = Point()
-  point._set_x(2)
-  point._set_y(4)
+  point._set_x(1)
+  point._set_y(375)
   p1 = Point()
-  p1._set_x(2)
-  p1._set_y(4)
+  p1._set_x(361)
+  p1._set_y(41)
   p2 = Point()
-  p2._set_x(5)
-  p2._set_y(9)
-  op = PointOperatorECC(1,6,11)
+  p2._set_x(2)
+  p2._set_y(4)
+  # op = PointOperatorECC(-1,1,1280)
+  op = PointOperatorECC(-1,751,11)
+  # result = op.multiply(8, point)
+  # result1 = op.multiply(6, result)
+  # print(result._get_x(), result._get_y(), ":::", result1._get_x(), result1._get_y())  
+
   result = op.multiply(2, point)
-  resultdouble = op.double_point(p1)
-  resultadd = op.add(resultdouble, p1)
+  # result1 = op.multiply(8, result)
+  # print(result._get_x(), result._get_y(), ":::", result1._get_x(), result1._get_y())  
+
+  resultdouble = op.double_point(point)
+  # resultadd = op.add(p1, p2)
+  # resultmin = op.minus(resultadd, p2)
   print(result._get_x(), result._get_y())  
   print(resultdouble._get_x(), resultdouble._get_y())  
-  print(resultadd._get_x(), resultadd._get_y())  
+
+  # print(resultadd._get_x(), resultadd._get_y())  
+  # print(resultmin._get_x(), resultmin._get_y())  
 
   
