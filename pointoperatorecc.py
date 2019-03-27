@@ -1,6 +1,5 @@
 import sys
 from point import Point
-from ecceg import EllipticCurveCryptoElGamal
 from base.general import is_prime, inverse
 
 class PointOperatorECC(object):
@@ -29,13 +28,10 @@ class PointOperatorECC(object):
       inv = inverse(2 * p._get_y(), self._get_P())
       lamda = ((3 * (p._get_x())**2 + self._get_A()) * inv) % self._get_P()
       lamda = int(lamda % self._get_P())
-      # print(lamda)
-
+      
       xr = (lamda**2 - (2 * p._get_x())) % self._get_P()
-      # print(xr)
       yr = (lamda * (p._get_x() - xr) - p._get_y()) % self._get_P()
-      # print(yr)
-
+      
       result._set_x(int(xr))
       result._set_y(int(yr))
       
