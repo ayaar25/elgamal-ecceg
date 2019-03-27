@@ -59,18 +59,58 @@ elif in_new_key == '1':
   print_green("- Enter public key location -")
   in_key_pub = input("Enter file location: ")
 
+  print_green("\nPublic Key File:")
+  with open(in_key_pub, 'rb') as file:
+    file_data = file.read()
+
+  for c in file_data:
+    print(hex(c), end=' ')
+  print()
+
   print("\n================")
   print_green("- Enter private key location -")
   in_key_pri = input("Enter file location: ")
+
+  print_green("\nPrivate Key File:")
+  with open(in_key_pri, 'rb') as file:
+    file_data = file.read()
+
+  for c in file_data:
+    print(hex(c), end=' ')
+  print()
 
 print("\n================")
 print_green("- Enter target file -")
 in_file = input("Enter file: ")
 
-if in_op == 1:
-  if in_algo == 1:
+# READ FILE
+print("\n================")
+print_green("- Input File: -")
+
+with open(in_file, 'r') as file:
+  file_data = file.read()
+print(file_data)
+
+# for c in file_data:
+#   print(hex(c), end=' ')
+# print()
+
+if in_op == '1':
+  if in_algo == '1':
     algo.encrypt(in_file, in_key_pub, in_key_pri)
-  elif in_algo == 2:
+    out_file = 'cipher.txt'
+  elif in_algo == '2':
     algo.encrypt(in_file, in_key_pub, in_key_pri, in_k)
-elif in_op == 2:
+    out_file = 'cipher_ecceg.txt'
+elif in_op == '2':
   algo.decrypt(in_file, in_key_pub, in_key_pri)
+  out_file = 'out.txt'
+
+print("\n================")
+print_green("- Output File: -")
+with open(out_file, 'rb') as file:
+  file_data = file.read()
+
+for c in file_data:
+  print(hex(c), end=' ')
+print()
