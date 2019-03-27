@@ -35,15 +35,17 @@ print_magenta("[1] Yes \t [2] No, create new key")
 in_new_key = input("Enter Choice: ")
 
 if in_new_key == 1:
-  pass
+  print("\n================")
+  print_green("- Enter new key location -")
+  in_key_name = input("Enter file location: ")
+elif in_new_key == 2:
+  print("\n================")
+  print_green("- Enter public key location -")
+  in_key_pub = input("Enter file location: ")
 
-print("\n================")
-print_green("- Enter public key location -")
-in_key_pub = input("Enter file location: ")
-
-print("\n================")
-print_green("- Enter private key location -")
-in_key_pri = input("Enter file location: ")
+  print("\n================")
+  print_green("- Enter private key location -")
+  in_key_pri = input("Enter file location: ")
 
 print("\n================")
 print_green("- Enter target file -")
